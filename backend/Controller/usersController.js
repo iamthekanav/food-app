@@ -1,6 +1,8 @@
 const users=require("../Model/usersModel.json");
 const {v4 : uuidv4} = require("uuid");
 const fs=require("fs");
+const path=require("path");
+const pathName=path.join(__dirname, "..","Model", "usersModel.json");
 function getAllUsers(req,res){
     let allUsers=users;
     if(allUsers.length>0){
@@ -20,7 +22,7 @@ function createUser(req,res){
     let id=uuidv4();
     user.id=id;
     users.push(user);
-    fs.writeFileSync("./db/users.json",JSON.stringify(users));
+    fs.writeFileSync(pathName,JSON.stringify(users));
     res.status(201).json({
         message : "User Created"
     })
@@ -53,7 +55,7 @@ function updateUser(req,res){
         for(key in updatedVals){
             user[key]=updatedVals[key];
         }
-        fs.writeFileSync("./db/users.json",JSON.stringify(users));
+        fs.writeFileSync(pathName,JSON.stringify(users));
         res.json({
             message : "User updated"
         })
@@ -74,7 +76,7 @@ function deleteUser(req,res){
             message: "no such user"
         })
     }else{
-        fs.writeFileSync("./db/users.json",JSON.stringify(filteredUsers));
+        fs.writeFileSync(pathName,JSON.stringify(filteredUsers));
         res.json({
             message :"user deleted"
         })

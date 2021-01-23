@@ -1,12 +1,15 @@
 const plans=require("../Model/plansModel.json");
 const {v4 : uuidv4} = require("uuid");
 const fs=require("fs");
+const path = require("path");
+const pathName=path.join(__dirname, "..","Model", "plansModel.json");
 function createAPlan(req,res){
     let plan=req.body;
     let id=uuidv4();
     plan.id=id;
     plans.push(plan);
-    fs.writeFileSync("./db/plans.json",JSON.stringify(plans));
+    
+    fs.writeFileSync(pathName,JSON.stringify(plans));
     res.status(201).json({
         message : "Plan Added"
     })
@@ -51,7 +54,8 @@ function updateAPlan(req,res){
         for(key in updatedVals){
             plan[key]=updatedVals[key];
         }
-        fs.writeFileSync("./db/plans.json", JSON.stringify(plans));
+        
+        fs.writeFileSync(pathName, JSON.stringify(plans));
         res.json({
             message :"Plan Updated"
         })
@@ -71,7 +75,8 @@ function deletePlan(req,res){
             message: "No Such Plan Found"
         })
     }else{
-        fs.writeFileSync("./db/plans.json", JSON.stringify(filteredPlan));
+        
+        fs.writeFileSync(pathName, JSON.stringify(filteredPlan));
         res.json({
             message: "Plan Deleted"
         })
