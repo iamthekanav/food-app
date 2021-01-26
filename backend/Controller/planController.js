@@ -187,9 +187,9 @@ async function deletePlan(req,res){
         })
     }
 }
-    module.exports.createAPlan=createAPlan;
-    module.exports.getAllPlans=getAllPlans;
-    module.exports.getPlanById=getPlanById;
-    module.exports.updateAPlan=updateAPlan;
-    module.exports.deletePlan=deletePlan;
+module.exports.createAPlan=createAPlan;
+module.exports.getAllPlans=getAllPlans;
+module.exports.getPlanById=getPlanById;
+module.exports.updateAPlan=updateAPlan;
+module.exports.deletePlan=deletePlan;
 
