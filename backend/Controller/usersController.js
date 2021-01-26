@@ -1,4 +1,4 @@
-const users=require("../Model/usersModel.json");
+const users=require("../Model/usersModel");
 const {v4 : uuidv4} = require("uuid");
 const fs=require("fs");
 const path=require("path");
